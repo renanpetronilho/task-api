@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An API for managing a list of tasks that need to be done. ",
+    "version": "1.1.0",
+    "title": "Tasks API",
+    "termsOfService": "",
+    "contact": {}
+  },
+  "host": "localhost:5050",
+  "basePath": "/api/v1/core",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "summary": "Load the list of Tasks",
+        "parameters": [
+          {
+            "name": "$size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Size of the page to retrieve.",
+            "x-example": 10
+          },
+          {
+            "name": "$page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of the page to retrieve.",
+            "x-example": 1
+          },
+          {
+            "name": "$sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Order in which to retrieve the results. Multiple sort criteria can be passed. Example: sort=age ASC,height DESC",
+            "x-example": "createdAt DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "examples": {
+              "application/json": "[{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}]"
+            }
+          },
+          "204": {
+            "description": "Status 204 with list empty",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "examples": {
+              "application/json": "[]"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new Task",
+        "consumes": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            },
+            "x-examples": {
+              "application/json": "{\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Status 201",
+            "headers": {
+              "Location": {
+                "type": "string",
+                "x-example": "http://endpoint/tasks/47ee3550-b619-11e6-8408-0bdb025a7cfa"
+              }
+            }
+          },
+          "409": {
+            "description": "Status 409"
+          }
+        }
+      }
+    },
+    "/tasks/{taskid}": {
+      "get": {
+        "summary": "Load a specific Task",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            },
+            "examples": {
+              "application/json": "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
+            }
+          },
+          "404": {
+            "description": "Status 404"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Task",
+        "consumes": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            },
+            "x-examples": {
+              "application/json": "{\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            },
+            "examples": {
+              "application/json": "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
+            }
+          },
+          "404": {
+            "description": "Status 404"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Task",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Status 204"
+          },
+          "404": {
+            "description": "Status 404"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "taskid",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "Identifier of the Task",
+          "x-example": "47ee3550-b619-11e6-8408-0bdb025a7cfa"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "required": [
+        "completed",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Auto-generated primary key field",
+          "example": "3fa2eb40-b61c-11e6-9de0-fdbe71bceebb"
+        },
+        "name": {
+          "type": "string",
+          "example": "Figure out how to colonize Mars"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2016.10.06"
+        }
+      },
+      "description": "An object that represents a Task.",
+      "example": "{\n  \"id\": \"47ee3550-b619-11e6-8408-0bdb025a7cfa\",\n  \"name\": \"Feed the fish\",\n  \"completed\": false,\n  \"createdAt\": \"2016.07.03\"\n}"
+    }
+  }
+}

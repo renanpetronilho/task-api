@@ -1,0 +1,200 @@
+{
+	"id": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+	"name": "Tasks API",
+	"description": "An API for managing a list of tasks that need to be done. ",
+	"order": [
+		"2b7166db-78da-9742-dc3b-061d424c2513",
+		"dd089629-df32-07aa-7513-d5031baffd9d",
+		"02d2316a-97ed-9e72-55fc-f175e2e3cd74",
+		"9427a7ad-1045-5af3-052e-03220ae21db7",
+		"55ccd7a4-c265-a47e-0e5d-6d691ecfb09d",
+		"3165de15-688c-6c09-f0e4-3166b1aa3617"
+	],
+	"folders": [],
+	"timestamp": 1413302258635,
+	"owner": 0,
+	"public": false,
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "02d2316a-97ed-9e72-55fc-f175e2e3cd74",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{uri_taski_api}}/tasks",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\ntests[\"Body is correct\"] = responseBody =! \"\";\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1501039497631,
+			"name": "Recuperar Tasks",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false\n}"
+		},
+		{
+			"id": "2b7166db-78da-9742-dc3b-061d424c2513",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{uri_taski_api}}/tasks",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1501039481668,
+			"name": "Erro de requisição inválida.",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false\n}"
+		},
+		{
+			"id": "3165de15-688c-6c09-f0e4-3166b1aa3617",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{getTaskById}}",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1500954527969,
+			"name": "Deletar task por ID",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false\n}"
+		},
+		{
+			"id": "55ccd7a4-c265-a47e-0e5d-6d691ecfb09d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{uri_taski_api}}/tasks/1234",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1501039510014,
+			"name": "Recuperar Tasks por ID inválido",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false\n}"
+		},
+		{
+			"id": "9427a7ad-1045-5af3-052e-03220ae21db7",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{getTaskById}}",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\ntests[\"Body is correct\"] = responseBody =! \"\";",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1500954235918,
+			"name": "Recuperar Tasks por ID",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false\n}"
+		},
+		{
+			"id": "dd089629-df32-07aa-7513-d5031baffd9d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{uri_taski_api}}/tasks",
+			"queryParams": [],
+			"preRequestScript": "postman.setEnvironmentVariable(\"createdAt\", new Date().getTime());",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Location is present\"] = postman.getResponseHeader(\"location\");\npostman.setEnvironmentVariable(\"getTaskById\", postman.getResponseHeader(\"location\"));",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1501039487724,
+			"name": "Criar Task",
+			"description": "",
+			"collectionId": "1f2d9649-464c-de9c-85fe-c6b5c3718201",
+			"responses": [],
+			"rawModeData": "{\n  \"name\": \"Task Teste\",\n  \"completed\": false,\n  \"createdAt\" : {{createdAt}}\n}"
+		}
+	]
+}
