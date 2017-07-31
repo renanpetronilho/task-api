@@ -1,6 +1,5 @@
 package com.petronilho.taskapi.task;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.ConstraintViolation;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
